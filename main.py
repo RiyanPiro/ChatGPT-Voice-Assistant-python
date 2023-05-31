@@ -6,6 +6,7 @@ import speech_recognition as sr
 
 # Setup Recognizer
 r = sr.Recognizer()
+# API Key
 openai.api_key = "ENTER_YOUR_API_KEY"
 
 # ----SFX---FUNCTIONS---- #
@@ -80,7 +81,7 @@ def listen_speech():
         except TimeoutError:
             print("Timeout error, say the wake word again")
             speak("Timeout error, say the wake word again")
-            endprompt_sfx
+            endprompt_sfx()
             return ""
         except sr.WaitTimeoutError:
             print("Timeout error, say the wake word again")
@@ -115,7 +116,7 @@ def ask_gpt(prompt):
 # Initialize the engine and voice properties
 engine = pyttsx3.init()
 voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[1].id)
+engine.setProperty("voice", voices[0].id)
 # Function for speaking (tts)
 def speak(text):
     engine.say(text)
